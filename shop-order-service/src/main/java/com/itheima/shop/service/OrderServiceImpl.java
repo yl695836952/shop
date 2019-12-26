@@ -295,13 +295,10 @@ public class OrderServiceImpl implements IOrderService {
             CastException.cast(ShopCode.SHOP_USER_NO_EXIST);
         }
         //4.校验商品单价是否合法
-      /*  if (order.getGoodsPrice().compareTo(goods.getGoodsPrice()) != 0) {
-            CastException.cast(ShopCode.SHOP_GOODS_PRICE_INVALID);
-        } */
-
-        if (order.getPayAmount().compareTo(goods.getGoodsPrice().multiply(new BigDecimal(order.getGoodsNumber()))) != 0) {
+        if (order.getGoodsPrice().compareTo(goods.getGoodsPrice()) != 0) {
             CastException.cast(ShopCode.SHOP_GOODS_PRICE_INVALID);
         }
+
         //5.校验订单商品数量是否合法
         if (order.getGoodsNumber() >= goods.getGoodsNumber()) {
             CastException.cast(ShopCode.SHOP_GOODS_NUM_NOT_ENOUGH);
