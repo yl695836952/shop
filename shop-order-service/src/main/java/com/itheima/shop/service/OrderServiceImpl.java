@@ -110,6 +110,7 @@ public class OrderServiceImpl implements IOrderService {
     private void sendCancelOrder(String topic, String tag, String keys, String body) throws InterruptedException, RemotingException, MQClientException, MQBrokerException {
         Message message = new Message(topic,tag,keys,body.getBytes());
         rocketMQTemplate.getProducer().send(message);
+
     }
 
     /**
