@@ -4,11 +4,29 @@ import java.math.BigDecimal;
 
 public class MQEntity {
 
+    /**
+     * 订单ID
+     */
     private Long orderId;
+    /**
+     * 优惠券ID
+     */
     private Long couponId;
+    /**
+     * 用户iD
+     */
     private Long userId;
+    /**
+     * 余额
+     */
     private BigDecimal userMoney;
+    /**
+     * 商品ID
+     */
     private Long goodsId;
+    /**
+     * 商品数量
+     */
     private Integer goodsNum;
 
     public Long getOrderId() {

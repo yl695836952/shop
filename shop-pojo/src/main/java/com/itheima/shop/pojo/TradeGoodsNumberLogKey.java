@@ -3,8 +3,13 @@ package com.itheima.shop.pojo;
 import java.io.Serializable;
 
 public class TradeGoodsNumberLogKey implements Serializable {
+    /**
+     * 商品ID
+     */
     private Long goodsId;
-
+    /**
+     * 库存ID
+     */
     private Long orderId;
 
     public Long getGoodsId() {

@@ -4,12 +4,21 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class TradePay implements Serializable {
+    /**
+     *  支付编号
+     */
     private Long payId;
-
+    /**
+     *  订单编号
+     */
     private Long orderId;
-
+    /**
+     *  支付金额
+     */
     private BigDecimal payAmount;
-
+    /**
+     *  是否已支付 1否 2是
+     */
     private Integer isPaid;
 
     public Long getPayId() {

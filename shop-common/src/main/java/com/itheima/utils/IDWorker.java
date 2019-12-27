@@ -27,11 +27,22 @@ public class IDWorker {
     private final static long MACHINE_LEFT = SEQUENCE_BIT;
     private final static long DATACENTER_LEFT = SEQUENCE_BIT + MACHINE_BIT;
     private final static long TIMESTMP_LEFT = DATACENTER_LEFT + DATACENTER_BIT;
-
-    private long datacenterId;  //数据中心
-    private long machineId;     //机器标识
-    private long sequence = 0L; //序列号
-    private long lastStmp = -1L;//上一次时间戳
+    /**
+     * 数据中心
+     */
+    private long datacenterId;
+    /**
+     * 机器标识
+     */
+    private long machineId;
+    /**
+     * 序列号
+     */
+    private long sequence = 0L;
+    /**
+     * 上一次时间戳
+     */
+    private long lastStmp = -1L;
 
     public IDWorker(long datacenterId, long machineId) {
         if (datacenterId > MAX_DATACENTER_NUM || datacenterId < 0) {
@@ -83,6 +94,10 @@ public class IDWorker {
         return mill;
     }
 
+    /**
+     * get now date
+     * @return
+     */
     private long getNewstmp() {
         return System.currentTimeMillis();
     }

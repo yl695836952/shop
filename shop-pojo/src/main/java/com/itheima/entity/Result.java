@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * 结果实体类
+ * @author yl
  */
 public class Result implements Serializable {
     private Boolean success;

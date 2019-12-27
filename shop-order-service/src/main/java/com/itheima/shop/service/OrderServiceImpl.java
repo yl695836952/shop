@@ -27,6 +27,10 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * 订单业务实现类
+ * @author yl
+ */
 @Slf4j
 @Component
 @Service(interfaceClass = IOrderService.class)
@@ -177,6 +181,7 @@ public class OrderServiceImpl implements IOrderService {
         goodsNumberLog.setOrderId(order.getOrderId());
         goodsNumberLog.setGoodsId(order.getGoodsId());
         goodsNumberLog.setGoodsNumber(order.getGoodsNumber());
+
         Result result = goodsService.reduceGoodsNum(goodsNumberLog);
         if(result.getSuccess().equals(ShopCode.SHOP_FAIL.getSuccess())){
             CastException.cast(ShopCode.SHOP_REDUCE_GOODS_NUM_FAIL);
@@ -205,6 +210,7 @@ public class OrderServiceImpl implements IOrderService {
         //4. 核算订单总金额是否合法
         BigDecimal orderAmount = order.getGoodsPrice().multiply(new BigDecimal(order.getGoodsNumber()));
         orderAmount.add(shippingFee);
+        //判断当前的总价格和对象中的总价格是否一样
         if(order.getOrderAmount().compareTo(orderAmount)!=0){
             CastException.cast(ShopCode.SHOP_ORDERAMOUNT_INVALID);
         }
@@ -266,9 +272,11 @@ public class OrderServiceImpl implements IOrderService {
      * @return
      */
     private BigDecimal calculateShippingFee(BigDecimal orderAmount) {
+        //超过100不给运费
         if(orderAmount.compareTo(new BigDecimal(100))==1){
             return BigDecimal.ZERO;
         }else{
+            //否则给10元运费
             return new BigDecimal(10);
         }
 

@@ -47,9 +47,9 @@ public class UserServiceImpl implements IUserService{
 
         //2.查询订单余额使用日志
         TradeUserMoneyLogExample userMoneyLogExample = new TradeUserMoneyLogExample();
-        TradeUserMoneyLogExample.Criteria criteria = userMoneyLogExample.createCriteria();
-        criteria.andOrderIdEqualTo(userMoneyLog.getOrderId());
-        criteria.andUserIdEqualTo(userMoneyLog.getUserId());
+        userMoneyLogExample.createCriteria()
+                .andOrderIdEqualTo(userMoneyLog.getOrderId())
+                .andUserIdEqualTo(userMoneyLog.getUserId());
         int r = userMoneyLogMapper.countByExample(userMoneyLogExample);
 
         TradeUser tradeUser = userMapper.selectByPrimaryKey(userMoneyLog.getUserId());
@@ -72,10 +72,10 @@ public class UserServiceImpl implements IUserService{
             }
             //防止多次退款
             TradeUserMoneyLogExample userMoneyLogExample2 = new TradeUserMoneyLogExample();
-            TradeUserMoneyLogExample.Criteria criteria1 = userMoneyLogExample2.createCriteria();
-            criteria1.andOrderIdEqualTo(userMoneyLog.getOrderId());
-            criteria1.andUserIdEqualTo(userMoneyLog.getUserId());
-            criteria1.andMoneyLogTypeEqualTo(ShopCode.SHOP_USER_MONEY_REFUND.getCode());
+            userMoneyLogExample2.createCriteria()
+            .andOrderIdEqualTo(userMoneyLog.getOrderId())
+            .andUserIdEqualTo(userMoneyLog.getUserId())
+            .andMoneyLogTypeEqualTo(ShopCode.SHOP_USER_MONEY_REFUND.getCode());
             int r2 = userMoneyLogMapper.countByExample(userMoneyLogExample2);
             if(r2>0){
                 CastException.cast(ShopCode.SHOP_USER_MONEY_REFUND_ALREADY);
