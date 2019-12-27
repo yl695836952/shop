@@ -87,11 +87,11 @@ public class CancelMQListener implements RocketMQListener<MessageExt>{
 
                     //使用数据库乐观锁更新
                     TradeMqConsumerLogExample example = new TradeMqConsumerLogExample();
-                    TradeMqConsumerLogExample.Criteria criteria = example.createCriteria();
-                    criteria.andMsgTagEqualTo(mqConsumerLog.getMsgTag());
-                    criteria.andMsgKeyEqualTo(mqConsumerLog.getMsgKey());
-                    criteria.andGroupNameEqualTo(groupName);
-                    criteria.andConsumerTimesEqualTo(mqConsumerLog.getConsumerTimes());
+                    example.createCriteria()
+                    .andMsgTagEqualTo(mqConsumerLog.getMsgTag())
+                    .andMsgKeyEqualTo(mqConsumerLog.getMsgKey())
+                    .andGroupNameEqualTo(groupName)
+                    .andConsumerTimesEqualTo(mqConsumerLog.getConsumerTimes());
                     int r = mqConsumerLogMapper.updateByExampleSelective(mqConsumerLog, example);
                     if(r<=0){
                         //未修改成功,其他线程并发修改
@@ -119,6 +119,14 @@ public class CancelMQListener implements RocketMQListener<MessageExt>{
             TradeGoods goods = goodsMapper.selectByPrimaryKey(goodsId);
             goods.setGoodsNumber(goods.getGoodsNumber()+mqEntity.getGoodsNum());
             goodsMapper.updateByPrimaryKey(goods);
+
+            //记录库存操作日志
+            TradeGoodsNumberLog tradeGoodsNumberLog = new TradeGoodsNumberLog();
+            tradeGoodsNumberLog.setOrderId(mqEntity.getOrderId());
+            tradeGoodsNumberLog.setGoodsId(goodsId);
+            tradeGoodsNumberLog.setGoodsNumber(mqEntity.getGoodsNum());
+            tradeGoodsNumberLog.setLogTime(new Date());
+            goodsNumberLogMapper.insert(tradeGoodsNumberLog);
 
 
             //6. 将消息的处理状态改为成功

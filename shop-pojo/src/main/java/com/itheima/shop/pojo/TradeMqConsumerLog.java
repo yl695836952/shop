@@ -3,6 +3,10 @@ package com.itheima.shop.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 消费者交易日志
+ * @author yl
+ */
 public class TradeMqConsumerLog extends TradeMqConsumerLogKey implements Serializable {
 
     private String msgId;

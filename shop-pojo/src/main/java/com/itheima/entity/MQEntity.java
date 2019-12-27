@@ -2,6 +2,10 @@ package com.itheima.entity;
 
 import java.math.BigDecimal;
 
+/**
+ * 消息实体
+ * @author yl
+ */
 public class MQEntity {
 
     /**

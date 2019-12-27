@@ -106,10 +106,10 @@ public class OrderServiceImpl implements IOrderService {
 
     /**
      * 发送订单确认失败消息
-     * @param topic
-     * @param tag
-     * @param keys
-     * @param body
+     * @param topic 主题
+     * @param tag   标签
+     * @param keys  订单ID
+     * @param body  消息实体JSON对象
      */
     private void sendCancelOrder(String topic, String tag, String keys, String body) throws InterruptedException, RemotingException, MQClientException, MQBrokerException {
         Message message = new Message(topic,tag,keys,body.getBytes());
