@@ -29,6 +29,10 @@ import org.springframework.util.StringUtils;
 import java.util.Date;
 
 
+/**
+ * 支付实现类
+ * @author yl
+ */
 @Slf4j
 @Component
 @Service(interfaceClass = IPayService.class)

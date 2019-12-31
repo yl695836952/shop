@@ -1,5 +1,9 @@
 package com.itheima.utils;
 
+/**
+ * 产生随机数
+ * @author yl
+ */
 public class IDWorker {
 
     /**

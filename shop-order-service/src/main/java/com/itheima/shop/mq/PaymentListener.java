@@ -16,6 +16,10 @@ import org.springframework.stereotype.Component;
 import java.io.UnsupportedEncodingException;
 
 
+/**
+ * 接收订单支付信息
+ * @author yl
+ */
 @Slf4j
 @Component
 @RocketMQMessageListener(topic = "${mq.pay.topic}",consumerGroup = "${mq.pay.consumer.group.name}",messageModel = MessageModel.BROADCASTING)

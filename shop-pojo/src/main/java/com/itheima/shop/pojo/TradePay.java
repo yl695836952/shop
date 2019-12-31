@@ -3,6 +3,10 @@ package com.itheima.shop.pojo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+/**
+ * 支付订单模型
+ * @author yl
+ */
 public class TradePay implements Serializable {
     /**
      *  支付编号
@@ -17,7 +21,7 @@ public class TradePay implements Serializable {
      */
     private BigDecimal payAmount;
     /**
-     *  是否已支付 1否 2是
+     *  是否已支付 0未付款 1正在付款 2已经付款
      */
     private Integer isPaid;
 

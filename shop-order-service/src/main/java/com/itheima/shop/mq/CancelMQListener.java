@@ -16,6 +16,10 @@ import org.springframework.stereotype.Component;
 import java.io.UnsupportedEncodingException;
 
 
+/**
+ * 接收订单失败时的处理信息
+ * @author yl
+ */
 @Slf4j
 @Component
 @RocketMQMessageListener(topic = "${mq.order.topic}",consumerGroup = "${mq.order.consumer.group.name}",messageModel = MessageModel.BROADCASTING )

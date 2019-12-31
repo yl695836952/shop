@@ -13,14 +13,14 @@ import org.apache.rocketmq.remoting.exception.RemotingException;
 public interface IPayService {
 
     /**
-     *
-     * @param tradePay
+     * 创建支付订单
+     * @param tradePay 支付
      * @return
      */
     public Result createPayment(TradePay tradePay);
 
     /**
-     *
+     *  支付回调
      * @param tradePay
      * @return
      * @throws InterruptedException
